@@ -6,8 +6,8 @@ services:
     container_name: react-app1
     restart: unless-stopped
     build:
-      context: .
-      dockerfile: ./client/Dockerfile
+      context: ./client
+      dockerfile: Dockerfile
     ports:
       - "6001:6000"
     volumes:
@@ -66,8 +66,8 @@ services:
 
   app:
     build:
-      context: ./
-      dockerfile: ./server/Dockerfile
+      context: ./server
+      dockerfile: Dockerfile
     image: request-form
     container_name: sample4
     restart: unless-stopped
