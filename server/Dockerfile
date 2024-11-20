@@ -13,25 +13,14 @@ RUN apk --no-cache add \
 
 # Set working directory
 WORKDIR /var/www
-
-# Install Composer (Laravel's dependency manager)
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set correct ownership for the entire Laravel project (done after copy)
+# Copy your Laravel project into the container
 COPY . /var/www
 
-# Ensure the correct permissions for storage and cache directories
-RUN chown -R www-data:www-data /var/www && \
-    chmod -R 775 /var/www/storage /var/www/bootstrap/cache && \
-    find /var/www/storage -type f -exec chmod 664 {} \;
+WORKDIR /var/www
 
-# Set file permissions for the rest of the Laravel project (optional, but recommended)
-RUN chmod -R 775 /var/www
-
-# Switch to the www-data user
-USER www-data
-
-# Set up the Laravel environment (generate application key)
+# Copy your Laravel project into the container (again, just in case)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/var/www --filename=composer
+# Generate application key
 RUN php artisan key:generate
 
 EXPOSE 5005
