@@ -13,6 +13,10 @@ RUN apk --no-cache add \
 
 # Set working directory
 WORKDIR /var/www
+
+# Install Composer (Laravel's dependency manager)
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 # Copy your Laravel project into the container
 COPY . /var/www
 
