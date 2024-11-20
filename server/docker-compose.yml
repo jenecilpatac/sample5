@@ -19,8 +19,8 @@ services:
       DB_HOST: 185.199.52.40
       DB_PORT: 3306
       DB_DATABASE: backend2
-      DB_USERNAME: smct
-      DB_PASSWORD: smct  
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD}  # Ensure this matches your DB password  
       
   nginx:
     image: nginx:alpine
