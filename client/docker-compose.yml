@@ -32,7 +32,7 @@ services:
     stdin_open: true
     tty: true
     networks:
-      - react-
+      - react-app
       
   react-app3:
     container_name: react-app3
