@@ -27,6 +27,8 @@ RUN chown -R www-data:www-data /var/www
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
     && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
+USER www-data
+
 WORKDIR /var/www
 
 # Copy your Laravel project into the container
