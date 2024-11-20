@@ -5,7 +5,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     image: request-form
-    container_name: sample4
+    container_name: sample5
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
@@ -16,55 +16,18 @@ services:
       - laravel-app
     environment:
       DB_CONNECTION: mysql
-      DB_HOST: db  # Ensure Laravel connects to the db container
-      DB_PORT: 3306
-      DB_DATABASE: backend
-      DB_USERNAME: root
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: backend2
+      DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}  # Ensure this matches your DB password
-  
-  db:
-    image: mysql:8.0
-    container_name: mysql-server
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: backend
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    ports:
-      - "3306:3306" 
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - laravel-app
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "mysql"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    restart: unless-stopped
-    environment:
-      PMA_HOST: db  # Name of the MySQL container
-      PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  # Use the same password as in the db container
-    ports:
-      - "8080:80"  # Expose phpMyAdmin on port 8080
-    networks:
-      - laravel-app
       
   nginx:
     image: nginx:alpine
     container_name: nginx-server
     restart: unless-stopped
     ports:
-      - 5005:5005
+      - 7005:7005
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx/default.conf:/etc/nginx/conf.d/default.conf
