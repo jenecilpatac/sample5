@@ -32,6 +32,23 @@ services:
     stdin_open: true
     tty: true
     networks:
+      - react-
+      
+  react-app3:
+    container_name: react-app3
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7003:7000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ./src:/app/src 
+    stdin_open: true
+    tty: true
+    networks:
       - react-app
 
   nginx:  
