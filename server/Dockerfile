@@ -17,7 +17,8 @@ WORKDIR /app
 # Install Composer (Laravel's dependency manager)
 COPY ./package*.json ./
 
-RUN composer install
+# Install Composer (Laravel's dependency manager)
+COPY --from=composer:latest /usr/bin/composer /usr/bin/comp
 
 RUN php artisan key:generate
 
