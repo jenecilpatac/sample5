@@ -20,25 +20,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy your Laravel project into the container
 COPY . /var/www
 
-# Set file permissions (optional)
-RUN chown -R www-data:www-data /var/www
-
-# Set up permissions for Laravel storage and cache directories
+# Set file permissions for Laravel storage and cache directories
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
     && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-USER www-data
+# Set file permissions for the rest of the Laravel project (optional, but recommended)
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 775 /var/www
 
 WORKDIR /var/www
 
-# Copy your Laravel project into the container
+# Copy your Laravel project into the container (again, just in case)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/var/www --filename=composer
 # Generate application key
 RUN php artisan key:generate
 
 EXPOSE 5005
 
-USER www-data
-
 CMD ["php-fpm"]
-
