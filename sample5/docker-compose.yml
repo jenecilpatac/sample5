@@ -62,10 +62,6 @@ services:
     networks:
       - web-network
 
-  networks:
-  web-network:
-    driver: bridge
-
 #BACKEND
 
   app:
@@ -141,6 +137,8 @@ services:
 
 networks:
   laravel-app:
+    driver: 
+  web-network:
     driver: bridge
 
 volumes:
