@@ -36,5 +36,7 @@ RUN php artisan key:generate
 
 EXPOSE 5005
 
+USER www-data
+
 CMD ["php-fpm"]
 
