@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6001:6000"
+      - "7001:7000"
     volumes:
       - .:/app
       - /app/node_modules
@@ -25,7 +25,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6002:6000"
+      - "7002:7000"
     volumes:
       - .:/app
       - /app/node_modules
@@ -41,7 +41,7 @@ services:
     container_name: react-nginx
     restart: unless-stopped    
     ports:                      
-      - 6000:6000
+      - 7000:7000
     volumes:
       - .:/app
       - /app/node_modules
