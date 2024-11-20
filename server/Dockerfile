@@ -11,9 +11,6 @@ RUN apk --no-cache add \
     && docker-php-ext-install gd \
     && docker-php-ext-install pdo pdo_mysql
 
-# Create www-data user explicitly (if not already there)
-RUN addgroup -S www-data && adduser -S www-data -G www-data
-
 # Set working directory
 WORKDIR /var/www
 
