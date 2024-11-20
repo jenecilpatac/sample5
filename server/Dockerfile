@@ -17,9 +17,11 @@ WORKDIR /app
 # Install Composer (Laravel's dependency manager)
 COPY ./package*.json ./
 
-# Install Composer (Laravel's dependency manager)
-COPY --from=composer:latest /usr/bin/composer /usr/bin/comp
+RUN curl -sS https://getcomposer.org/installer 
 
+RUN composer install
+
+# Generate application key
 RUN php artisan key:generate
 
 EXPOSE 5005
