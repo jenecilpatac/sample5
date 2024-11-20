@@ -12,17 +12,20 @@ RUN apk --no-cache add \
     && docker-php-ext-install pdo pdo_mysql
 
 # Set working directory
-WORKDIR /app
+WORKDIR /var/www
 
 # Install Composer (Laravel's dependency manager)
-COPY ./package*.json ./
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN curl -sS https://getcomposer.org/installer 
+# Copy your Laravel project into the container
+COPY . /var/www
 
-RUN composer install
+# Set file permissions (optional)
+RUN chown -R www-data:www-data /var/www
 
-# Generate application key
-RUN php artisan key:generate
+# Set up permissions for Laravel storage and cache directories
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
+    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 EXPOSE 5005
 
