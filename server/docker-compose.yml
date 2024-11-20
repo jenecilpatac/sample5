@@ -13,14 +13,14 @@ services:
       - ./bootstrap/cache:/var/www/bootstrap/cache
       - ./:/var/www
     networks:
-      - laravel-app
+      - laravel-app1
     environment:
       DB_CONNECTION: mysql
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
+      DB_HOST: 185.199.52.40
+      DB_PORT: 3306
       DB_DATABASE: backend2
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}  # Ensure this matches your DB password
+      DB_USERNAME: smct
+      DB_PASSWORD: smct  
       
   nginx:
     image: nginx:alpine
@@ -32,10 +32,10 @@ services:
       - ./:/var/www
       - ./docker-compose/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - laravel-app
+      - laravel-app1
 
 networks:
-  laravel-app:
+  laravel-app1:
     driver: bridge
 
 volumes:
