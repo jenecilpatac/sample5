@@ -22,12 +22,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/var/www -
 # Generate application key
 RUN php artisan key:generate
 
-# Set the working directory to /var/www
-WORKDIR /var/www
-
-# Ensure proper ownership and permissions for storage and cache directories
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
-    && chmod -R 775 /var/www/storage /var/www/bootstrap/cachear/www/bootstrap/cache
+    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 EXPOSE 7005
 
