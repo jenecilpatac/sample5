@@ -13,14 +13,30 @@ services:
       - ./bootstrap/cache:/var/www/bootstrap/cache
       - ./:/var/www
     networks:
-      - laravel-app1
+      - laravel-app5
     environment:
       DB_CONNECTION: mysql
       DB_HOST: 185.199.52.40
       DB_PORT: 3306
       DB_DATABASE: backend2
       DB_USERNAME: root
-      DB_PASSWORD: ${DB_PASSWORD}  # Ensure this matches your DB password  
+      DB_PASSWORD: ${DB_PASSWORD}  # Ensure this matches your DB password 
+
+  mysql:
+    image: mysql:8.0
+    container_name: sample5-mysql-server
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: backend2
+      MYSQL_USER: smct
+      MYSQL_PASSWORD: smct
+      MYSQL_ROOT_PASSWORD: smct  # Ensure this matches your root password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - laravel-app5
+    ports:
+      - "3306:3306"  # Expose MySQL to the host machine (optional) 
       
   nginx:
     image: nginx:alpine
@@ -32,11 +48,11 @@ services:
       - ./:/var/www
       - ./docker-compose/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - laravel-app1
+      - laravel-app5
 
 networks:
-  laravel-app1:
+  laravel-app5:
     driver: bridge
 
 volumes:
-  mysql_data:  # Named volume for MySQL data
+  mysql_data5:  # Named volume for MySQL data
