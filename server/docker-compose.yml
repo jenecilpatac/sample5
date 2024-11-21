@@ -32,7 +32,7 @@ services:
       MYSQL_PASSWORD: smct
       MYSQL_ROOT_PASSWORD: smct  # Ensure this matches your root password
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data5:/var/lib/mysql
     networks:
       - laravel-app5
     ports:
