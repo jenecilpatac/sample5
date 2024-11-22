@@ -40,7 +40,7 @@ services:
       
   phpmyadmin-server:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin-server
+    container_name: phpmyadmin-samplee5
     restart: unless-stopped
     ports:
       - 8081:80  # Expose phpMyAdmin on port 8080
