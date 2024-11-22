@@ -12,7 +12,6 @@ services:
       - .:/app
       - /app/node_modules
       - ./src:/app/src
-      - ./default.conf:/etc/nginx/conf.d/default.conf
     stdin_open: true
     tty: true
     networks:
@@ -30,7 +29,6 @@ services:
       - .:/app
       - /app/node_modules
       - ./src:/app/src 
-      - ./default.conf:/etc/nginx/conf.d/default.conf
     stdin_open: true
     tty: true
     networks:
@@ -47,8 +45,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-      - ./src:/app/src 
-      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./src:/app/src
     stdin_open: true
     tty: true
     networks:
