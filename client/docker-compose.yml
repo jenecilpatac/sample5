@@ -1,6 +1,6 @@
 
 services:
-  sample4-react:
+  sample4-react1:
     container_name: sample4-react
     restart: unless-stopped
     build:
