@@ -16,40 +16,12 @@ services:
       - network5
     environment:
       DB_CONNECTION: mysql
-      DB_HOST: db
+      DB_HOST: 172.17.0.1
       DB_PORT: 3306
       DB_DATABASE: backend2
-      DB_USERNAME: root
-      DB_PASSWORD: ${DB_PASSWORD}  # Ensure this matches your DB password 
+      DB_USERNAME: smct
+      DB_PASSWORD: smct  # Ensure this matches your DB password 
 
-  db:
-    image: mysql:8.0
-    container_name: sample5-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: backend2
-      MYSQL_USER: smct
-      MYSQL_PASSWORD: smct
-      MYSQL_ROOT_PASSWORD: smct  # Ensure this matches your root password
-    volumes:
-      - mysql_data5:/var/lib/mysql
-    networks:
-      - network5
-    ports:
-      - "3308:3306"  # Expose MySQL to the host machine (optional)
-      
-  phpmyadmin-server:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin-samplee5
-    restart: unless-stopped
-    ports:
-      - 8081:80  # Expose phpMyAdmin on port 8080
-    environment:
-      PMA_HOST: db  # Use 'mysql' as the service name
-      PMA_USER: smct
-      PMA_PASSWORD: smct
-    networks:
-      - network5
 
   nginx-server:
     image: nginx:alpine
