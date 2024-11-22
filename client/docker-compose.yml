@@ -10,6 +10,8 @@ services:
       - "7001:7000"
     volumes:
       - .:/app
+      - /app/node_modules
+      - ./src:/app/src
       - ./default.conf:/etc/nginx/conf.d/default.conf
     stdin_open: true
     tty: true
@@ -25,7 +27,9 @@ services:
     ports:
       - "7002:7000"
     volumes:
-      - .:/app 
+      - .:/app
+      - /app/node_modules
+      - ./src:/app/src 
       - ./default.conf:/etc/nginx/conf.d/default.conf
     stdin_open: true
     tty: true
@@ -41,7 +45,9 @@ services:
     ports:
       - "7003:7000"
     volumes:
-      - .:/app 
+      - .:/app
+      - /app/node_modules
+      - ./src:/app/src 
       - ./default.conf:/etc/nginx/conf.d/default.conf
     stdin_open: true
     tty: true
@@ -55,7 +61,9 @@ services:
     ports:                      
       - 7000:7000
     volumes:
-      - .:/app 
+      - .:/app
+      - /app/node_modules
+      - ./src:/app/src 
       - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
       - react-app 
